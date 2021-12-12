@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Rhymepedia</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rhymepedia</h1>
+        <form id=search-form action="/" method="POST">
+                <input id="search_input" name="search_input" type="text" placeholder="Search song by title or artist name">
+                <img id="search-icon" src="/images/search.svg">
+        </form>
+        <div class="results">
+            <% for (let i = 0; i < data.length; i++) { %>
+            <div class="result-cards" data-title=<%= data[i].result.title.replaceAll(" ", "@") %> data-artist=<%= data[i].result.artist_names.replaceAll(" ", "@") %>>
+                <img id="result-image" src= <%- data[i].result.song_art_image_thumbnail_url %>>
+                <div class="result-text">
+                    <h3><%= data[i].result.title %></h3>
+                    <p><%= data[i].result.artist_names %></p>
+                </div>
+            </div>
+                <% } %>
+        </div>
+    </div>
+    <script>
+        const search_results = document.querySelectorAll(".result-cards")
+        search_results.forEach((element) => {
+            element.addEventListener("click", (e) => {
+                const title = e.currentTarget.dataset.title.replaceAll("@", " ")
+                console.log("----------------------------------------------------------")
+                console.log(title)
+                const artist = e.currentTarget.dataset.artist.replaceAll("@", " ")
+                window.open(`view/${title}/${artist}`, "_self")
+            })
+        })
+    </script>
+    <script src="/js/format.js"></script>
+</body>
+</html>

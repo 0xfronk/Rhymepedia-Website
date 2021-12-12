@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhymepedia - Create</title>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <a style="text-decoration: none;" href="/"><h1 style="padding-top: 3%;">Rhymepedia</h1></a>
+    <h3><%= title %></h3>
+    <h5><%= artist %></h5>
+    <div id="toolbar-container">
+        <select class="ql-background">
+          <option selected></option>
+          <option value="red"></option>
+          <option value="orange"></option>
+          <option value="yellow"></option>
+          <option value="green"></option>
+          <option value="blue"></option>
+          <option value="purple"></option> 
+        </select>
+      </span>
+    </div>
+    <form id="create-form" action="/create/<%= title %>/<%= artist %>" method=POST>
+        <label style="display: none;" for="lyrics">Lyrics</label>
+        <input name="lyrics" type="hidden">
+        <input name="lyrics_text" type="hidden">
+        <div id="editor-container">
+            <%- lyrics %>
+          </div>
+        <input id="submit-button" type="submit" value="Submit">
+    </form>
+    </div>
+
+    <!-- Main Quill library -->
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        const BackgroundClass = Quill.import('attributors/class/background');
+        const ColorClass = Quill.import('attributors/class/color');
+        const SizeStyle = Quill.import('attributors/style/size');
+        Quill.register(BackgroundClass, true);
+
+
+        const quill = new Quill('#editor-container', {
+        modules: {
+        toolbar: '#toolbar-container'
+        },
+        placeholder: 'Annotate lyrics',
+        theme: 'snow'
+        });
+        document.querySelector("form").onsubmit = function() {
+  // Populate hidden form on submit
+  const lyrics= document.querySelector('input[name=lyrics]');
+  lyrics.value = JSON.stringify(quill.getContents());
+  const lyrics_text = document.querySelector('input[name=lyrics_text]');
+  lyrics_text.value = JSON.stringify(quill.getText());
+  document.querySelector("form").submit()
+  confetti()
+  location.reload()
+        }
+    quill.setContents(<%- lyrics %>, "api")
+    </script>
+    <script src="/js/format.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>

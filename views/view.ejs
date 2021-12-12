@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Rhymepedia</title>
+</head>
+<body>
+    <a style="text-decoration: none;" href="/"><h1 style="padding-top: 3%;">Rhymepedia</h1></a>
+    <% if (status === 0) { %>
+        <a  href="/create/<%= title %>/<%= artist %>" target= "_self"><p id="view-message"><%= content %></p></a>
+    <% } else { %>
+    <h3><%= title %></h1>
+    <h5><%= artist %></h5>
+    <div id="view-toolbar-container">
+        <select class="ql-background">
+          <option selected></option>
+          <option value="red"></option>
+          <option value="orange"></option>
+          <option value="yellow"></option>
+          <option value="green"></option>
+          <option value="blue"></option>
+          <option value="purple"></option> 
+        </select>
+      </span>
+    </div>
+        <div id="view-editor-container">
+        </div>
+    </div>
+    <a  href="/create/<%= title %>/<%= artist %>" target= "_self"><p id="view-message">Edit this Annotation</p></a>
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        const BackgroundClass = Quill.import('attributors/class/background');
+        const ColorClass = Quill.import('attributors/class/color');
+        const SizeStyle = Quill.import('attributors/style/size');
+        Quill.register(BackgroundClass, true);
+
+
+        const quill_read = new Quill('#view-editor-container', {
+        modules: {
+        toolbar: '#view-toolbar-container'
+        },
+        placeholder: 'Annotate lyrics',
+        theme: 'snow'
+        });
+        quill_read.setContents(<%- lyrics %>) 
+        quill_read.disable()
+        
+    </script>
+    <% } %>
+    <script src="/js/view.js"></script>
+</body>
+</html>
