@@ -33,10 +33,10 @@
         const search_results = document.querySelectorAll(".result-cards")
         search_results.forEach((element) => {
             element.addEventListener("click", (e) => {
-                const title = e.currentTarget.dataset.title.replaceAll("@", " ")
+                const title = e.currentTarget.dataset.title.replace("@", " ")
                 console.log("----------------------------------------------------------")
                 console.log(title)
-                const artist = e.currentTarget.dataset.artist.replaceAll("@", " ")
+                const artist = e.currentTarget.dataset.artist.replace("@", " ")
                 window.open(`view/${title}/${artist}`, "_self")
             })
         })
