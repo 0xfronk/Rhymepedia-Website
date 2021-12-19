@@ -3,7 +3,6 @@ const axios = require("axios")
 const app = express()
 const lyrics_api = require("genius-lyrics-api")
 const cors = require("cors")
-const e = require("express")
 const PORT = process.env.PORT || 3000
 const nq_converter = require("node-quill-converter")
 const qs = require("qs")
