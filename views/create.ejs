@@ -63,7 +63,6 @@
   const lyrics_text = document.querySelector('input[name=lyrics_text]');
   lyrics_text.value = JSON.stringify(quill.getText());
   document.querySelector("form").submit()
-  document.location.href = "/"
         }
     quill.setContents(<%- lyrics %>, "api")
     </script>
