@@ -46,13 +46,10 @@ body {
 
 #search-icon {
   position: absolute;
-  top: 12.5px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 2.5%;
   transition: 0.3s;
-}
-
-#search-icon:hover {
-  transform: scale(0.9);
 }
 
 #search-icon:hover {
@@ -239,8 +236,6 @@ h5 {
     display: inline-block;
   }
   #search-icon {
-    top: 8.5px;
-    right: 2%;
     width: 25px;
   }
   #submit-button {
@@ -266,8 +261,6 @@ h5 {
     font-size: 12px;
   }
   #search-icon {
-    top: 12.5px;
-    right: 2.5%;
     width: 18px;
   }
   #search_input {
