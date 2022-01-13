@@ -14,8 +14,8 @@
 </head>
 <body>
     <a style="text-decoration: none;" href="/"><h1 style="padding-top: 3%;">Rhymepedia</h1></a>
-    <h3><%= title %></h3>
-    <h5><%= artist %></h5>
+    <h3 class="title"><%= title %></h3>
+    <h5 class="artist"><%= artist %></h5>
     <div id="toolbar-container">
         <select class="ql-background">
           <option selected></option>
@@ -63,11 +63,10 @@
   const lyrics_text = document.querySelector('input[name=lyrics_text]');
   lyrics_text.value = JSON.stringify(quill.getText());
   document.querySelector("form").submit()
-  confetti()
+  document.location.href = "/"
         }
     quill.setContents(<%- lyrics %>, "api")
     </script>
     <script src="/js/format.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
