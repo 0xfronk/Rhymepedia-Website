@@ -19,7 +19,7 @@
         </form>
         <div class="results">
             <% for (let i = 0; i < data.length; i++) { %>
-            <div class="result-cards" data-title=<%= data[i].result.title.replaceAll(" ", "@") %> data-artist=<%= data[i].result.artist_names.replaceAll(" ", "@") %>>
+            <div class="result-cards" data-title="<%- data[i].result.title.replace(" ", "@") %>" data-artist= "<%- data[i].result.artist_names.replace(" ", "@") %>">
                 <img id="result-image" src= <%- data[i].result.song_art_image_thumbnail_url %>>
                 <div class="result-text">
                     <h3><%= data[i].result.title %></h3>
@@ -33,10 +33,10 @@
         const search_results = document.querySelectorAll(".result-cards")
         search_results.forEach((element) => {
             element.addEventListener("click", (e) => {
-                const title = e.currentTarget.dataset.title.replaceAll("@", " ")
+                const title = e.currentTarget.dataset.title.replace("@", " ")
                 console.log("----------------------------------------------------------")
                 console.log(title)
-                const artist = e.currentTarget.dataset.artist.replaceAll("@", " ")
+                const artist = e.currentTarget.dataset.artist.replace("@", " ")
                 window.open(`view/${title}/${artist}`, "_self")
             })
         })
