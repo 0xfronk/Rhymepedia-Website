@@ -109,7 +109,7 @@ app.post("/create/:title/:artist", async (req, res) => {
   };
   axios
     .post("https://rhymepedia-api.herokuapp.com/api/create", data)
-    .then((res) => res.redirect(`/view/${title}/${artist}`))
+    .then((result) => res.redirect(`/view/${title}/${artist}`))
     .catch((err) => console.log(err));
 });
 
